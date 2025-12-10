@@ -1,4 +1,5 @@
-ptxproj/src/boost_1_68_0.tar.bz2 filter=lfs diff=lfs merge=lfs -text
 ptxproj/src/linux-*.tgz filter=lfs diff=lfs merge=lfs -text
 ptxproj/src/rootlesskit-dep-2.0.2.tar.gz filter=lfs diff=lfs merge=lfs -text
 ptxproj/src/go1.21.8.linux-amd64.tar.gz filter=lfs diff=lfs merge=lfs -text
+ptxproj/src/boost_1_83_0.tar.bz2 filter=lfs diff=lfs merge=lfs -text
+ptxproj/configs/cc100/packages/libbacnetstack_rev25_3.3.12_armhf.tgz filter=lfs diff=lfs merge=lfs -text

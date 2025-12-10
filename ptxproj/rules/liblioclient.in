@@ -4,9 +4,11 @@ config LIBLIOCLIENT
 	tristate
 	prompt "liblioclient"
 	select LIBIOACCESS
-	select WAGO_PARAMETER_SERVICE_COM
-	select WAGO_PARAMETER_SERVICE_MODEL_FILES
-	select WAGO_PARAMETER_SERVICE_MODEL_FILES_WDX_CPP_HEADERS
+	select HOST_CT_BUILD
+	select WDX_LINUX
+	select WDX_LINUX_COM_LIB
+	select WDX_WDM
+	select WDX_WDM_CPP_HEADERS
 	help
 	  Client library for WDx parameter and local IO access
 

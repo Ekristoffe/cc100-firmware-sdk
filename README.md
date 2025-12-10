@@ -86,7 +86,7 @@ This step is optional, step 4.) includes this one. But using this step, everythi
 
     make get
 
-Alternatively you can also run pfc-builder in bash mode (```make bash```) and enter the following command.
+Alternatively you can also run cc100-builder in bash mode (```make bash```) and enter the following command.
 
     ptxdist get -q
 
@@ -137,7 +137,7 @@ It is possible to create the WUP for an easier update of the firmware via ethern
 
     make wup
 
-   Alternatively you can also run pfc-builder in bash (```make bash```) mode and enter the following command.
+   Alternatively you can also run cc100-builder in bash (```make bash```) mode and enter the following command.
    
     make wup
     

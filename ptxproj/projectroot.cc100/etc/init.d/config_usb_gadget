@@ -46,7 +46,18 @@ add_function()
     echo "1" > "${curr_function}/stall"
   fi
   if test "$1" = rndis; then
-    echo "1" > "${curr_function}/use_ms_rndiscmp"
+    if test -f ${curr_function}/use_ms_rndiscmp; then
+      echo "1" > "${curr_function}/use_ms_rndiscmp"
+    else
+      # the upstream kernel version 6.x doesn't implement use_ms_rndiscmp
+      # option -> use class, subclass, protocol to configure options
+      # recognized by Windows Vista and later (as described here
+      # https://msdn.microsoft.com/library/ff538820(v=vs.85).aspx)
+      # when use_ms_rndiscmp is not available
+      echo ef > "${curr_function}/class"
+      echo 04 > "${curr_function}/subclass"
+      echo 01 > "${curr_function}/protocol"
+    fi
   fi
   ln -fs "$curr_function" "${configs}"
 }
@@ -68,30 +79,26 @@ config_base()
   )
 }
 
-start_stop_gadget()
-{
-  test -d "${GADGET}" && cd "${GADGET}" || return
-  # UDC is either empty or the current UDC
-  test ! -f UDC || read UDC < UDC
-
-  case "$USB:$UDC" in
-    1:)
-	# Enable "USB Device Controller" if not enabled
-	ls /sys/class/udc | head -n1 > UDC
-	;;
-    0:?*)
-	# Disable USB Gadget controller if enabled
-	echo > UDC
-  esac
-}
-
 replug()
 {
+	udc=$(ls /sys/class/udc | head -n1)
+	usb_role_path="/sys/class/udc/$udc/device/usb_role/$udc-role-switch/role"
+	if test -f $usb_role_path; then
+		role=$(cat $usb_role_path)
+	fi
+
 	test -d "${GADGET}" || exit 0
 	cd "${GADGET}"
+
+	# write "" to UDC if UDC is not empty (-> disable gadget if it's
+	# not disabled already)
 	test -z "$(cat UDC)" || echo > UDC
-	sleep 3
-	ls /sys/class/udc | head -n1 > UDC
+
+	# re-enable gadget (if not in host mode)
+	if test -z "${role}" || test "$role" = "device"; then
+		sleep 3
+		ls /sys/class/udc | head -n1 > UDC
+	fi
 }
 
 case "$1" in
@@ -116,7 +123,6 @@ case "$1" in
 	for f in $GADGET_FUNCTIONS; do
 	  add_function "$f"
 	done
-	start_stop_gadget
 	replug
 	;;
   stop)
@@ -139,7 +145,6 @@ case "$1" in
 	replug
 	;;
   event)
-	start_stop_gadget
 	replug
 	;;
   *)

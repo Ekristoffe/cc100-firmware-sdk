@@ -2484,6 +2484,67 @@
     
   </event>
 </eventclass>
+<eventclass class_range="x000E" name="DALISERVICE">
+  <event id="x0001" name="DALI_OFF">
+    <led name="DALI" state="STATIC_OFF">
+    </led>
+    <string>
+        	<en>DALI service is not running</en>
+        	<de>DALI Service läuft nicht</de>
+		</string>
+    
+  </event>
+  <event id="x0002" name="DALI_NO_ERR">
+    <led name="DALI" state="STATIC_GRN">
+    </led>
+    <string>
+        	<en>DALI operational</en>
+      	</string>
+    
+  </event>
+  <event id="x0003" name="DALI_FRAMING_ERR">
+    <led name="DALI" state="STATIC_YLW">
+    </led>
+    <string>
+        	<en>DALI operational - Warning Level</en>
+      	</string>
+    
+  </event>
+  <event id="x0004" name="DALI_COLLISION_ERR">
+    <led name="DALI" state="STATIC_YLW">
+    </led>
+    <string>
+        	<en>DALI operational - Warning Level</en>
+      	</string>
+    
+  </event>
+  <event id="x0005" name="DALI_UNKNOWN_ERR">
+    <led name="DALI" state="STATIC_RED">
+    </led>
+    <string>
+        	<en>DALI stop - Error Level</en>
+      	</string>
+    
+  </event>
+  <event id="x0006" name="DALI_BUS_ERR">
+    <led name="DALI" state="STATIC_RED">
+    </led>
+    <string>
+        	<en>DALI stop - Error Level</en>
+      	</string>
+    
+  </event>
+  <event id="x0007" name="DALI_IDENTIFY">
+    <led name="DALI" state="BLINK_GRN">
+      <on>500</on>
+      <off>500</off>
+    </led>
+    <string>
+        	<en>DALI operational - Identify</en>
+      	</string>
+    
+  </event>
+</eventclass>
 <eventclass class_range="x0011" name="codesys3">
   <event id="x0000" name="PLC-Online">
     <led name="RUN" state="BLINK_GRN">

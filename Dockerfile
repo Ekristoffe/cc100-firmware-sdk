@@ -1,8 +1,7 @@
 ARG REGISTRY_PREFIX='wagoautomation/'
-ARG SDK_BUILDER_VERSION='3.0.1'
+ARG SDK_BUILDER_VERSION='4.0.0'
 
 FROM ${REGISTRY_PREFIX}sdk-builder:${SDK_BUILDER_VERSION} as cc100-firmware-sdk
-
 
 ARG USERID
 RUN useradd -l -u "$USERID" -ms /bin/bash user

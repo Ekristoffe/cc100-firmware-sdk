@@ -1,0 +1,10 @@
+/doc/html/
+/doc/latex/
+/build
+/.cache
+/CMakeUserPresets.json
+/.vscode
+/compile_commands.json
+
+.cpptest
+reports

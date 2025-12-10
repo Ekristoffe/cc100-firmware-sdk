@@ -1,0 +1,14 @@
+## SECTION=wago_specific_device
+
+config DALISERVICE
+	bool
+	select WAGO_PFC_DIAGNOSTIC
+	select LIBCOMMONHEADER
+	select DBUS
+	select DBUS_GLIB
+	select HOST_CT_BUILD
+	select GOOGLETEST
+	select GLIB
+	prompt "DALI service"
+	help
+	  provides a service to provide DALI multimaster functionality

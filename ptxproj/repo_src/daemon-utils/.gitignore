@@ -1,0 +1,8 @@
+/doc/html/
+/doc/latex/
+/build
+/.cache
+CMakeUserPresets.json
+
+.cpptest
+reports

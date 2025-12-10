@@ -2,6 +2,7 @@
 
 config LIBIOACCESS
 	tristate
+	select HOST_CT_BUILD
 	select GLIB
 	select HOST_GLIB
 	prompt "libioaccess"

@@ -1,0 +1,11 @@
+## SECTION=wago_specific_codesys_3_wagocmp
+
+config CDS3_TSCDALIAPPCONNECTOR
+  bool
+  prompt "Component to access onboard DALI FEC "
+  default n
+  select CODESYS3
+  select CDS3_INCLUDES
+  select DALISERVICE
+  help
+    "This Component provides access to the DALISERVICE."

@@ -1,0 +1,26 @@
+From: Konstantin Kilzer <konstantin.kilzer@wago.com>
+Date: Mon, 29 Sep 2025 12:05:58 +0200
+Subject: [PATCH] drivers: st: io: initialize result variable
+
+Fix compile error where 'result' variable may be used uninitialized
+in drivers/st/io/io_stm32image.c.in drivers/st/io/io_stm32image.c
+
+Fixes:
+- drivers/st/io/io_stm32image.c:249: error: 'result' may be used uninitialized [-Werror=maybe-uninitialized]
+---
+ drivers/st/io/io_stm32image.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/st/io/io_stm32image.c b/drivers/st/io/io_stm32image.c
+index 3e377cd48320..483b719020cc 100644
+--- a/drivers/st/io/io_stm32image.c
++++ b/drivers/st/io/io_stm32image.c
+@@ -246,7 +246,7 @@ static int stm32image_partition_size(io_entity_t *entity, size_t *length)
+ static int stm32image_partition_read(io_entity_t *entity, uintptr_t buffer,
+ 				     size_t length, size_t *length_read)
+ {
+-	int result;
++	int result = 0;
+ 	uint8_t *local_buffer;
+ 	boot_api_image_header_t *header =
+ 		(boot_api_image_header_t *)first_lba_buffer;
